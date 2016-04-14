@@ -31,6 +31,12 @@ Descendants - потомки
  though - хотя
  indent - отступ
  selection - выбор
+ regard - что касается
+ omit - пропустить
+ сonsider - рассматривать
+ enhanced - повышенная
+ Realm - область
+ deserve- заслуживать
 
 http://rusnext.ru/news/1456370887
 
@@ -40,6 +46,15 @@ http://rusnext.ru/news/1457860097
 
 http://smoz.ru/
 
+https://docs.oracle.com/javase/tutorial/java/IandI/defaultmethods.html
+
+освоить точечную запись
+
+http://rusnext.ru/news/1459235398
+
+https://www.mail-archive.com/jenkinsci-issues@googlegroups.com/msg45731.html
+
+Provisioning
 
 
  
