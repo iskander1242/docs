@@ -55,6 +55,7 @@ http://rusnext.ru/news/1459235398
 https://www.mail-archive.com/jenkinsci-issues@googlegroups.com/msg45731.html
 
 Provisioning
+facility
 
 
  

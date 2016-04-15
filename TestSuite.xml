@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- Set test suite name and parallel mode [methods/classes] -->
+<suite name="Suite_All" parallel="false">
+	<!-- Specify config file -->
+	<parameter name="group_definition_file" value="group_definition_star.csv" />
+	<parameter name="config_file" value="project_config.ini" />
+	<parameter name="project" value="NitroIntegration" />
+	<parameter name="environment" value="Beta" />
+	<parameter name="automated_outputdir" value="./automate_report" />
+
+	<listeners>
+		<listener class-name="com.thomsonreuters.collaboration.services.testng.AnnotationTransform" />
+		<listener class-name="com.thomsonreuters.collaboration.services.testng.CollabSuiteListener" />
+		<listener class-name="com.thomsonreuters.collaboration.services.testng.RealtimeListener" />
+		<listener class-name="com.thomsonreuters.inttest.NitroIntegration.robot.em2016q1.WorkerTestListener" />
+		<listener class-name="com.thomsonreuters.inttest.NitroIntegration.robot.WorkerTestListener" />
+		<listener class-name="com.thomsonreuters.inttest.NitroIntegration.alm.AlmUploadingListener" />
+		<listener class-name="com.thomsonreuters.inttest.NitroIntegration.robot.BDQAAUTReport" />
+	    <listener class-name="com.thomsonreuters.inttest.NitroIntegration.allure.AllureTestListener" />
+	</listeners>
+	
+	<test name="Test" >
+	<!-- Specify all test class in project -->
+		<classes>
+			<class name="com.thomsonreuters.inttest.NitroIntegration.robot.em2016q1.TestWorker" />
+		</classes>
+	</test>
+</suite>

@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="build-OF-package" default="pack_ready_to_run">
+
+	<tstamp>
+		<format property="TODAY" pattern="yyyy-MM-dd HH:mm:ss" />
+	</tstamp>
+
+	<!-- <dirname property="openfire.basedir" file="${ant.file}" /> -->
+	<!--<echo>Package current dir ${openfire.basedir}</echo>-->
+	<property name="build.release" value="1.0" />
+	<property name="build.no" value="0" />
+	<property name="revision" value="0" />
+	<property name="file_name" value="TestNitroIntegration.${build.release}.${build.no}.${revision}.jar" />
+	<!-- set path for collab services lib -->
+	<property name="build_dir" value=".build" />
+	<property name="pack_for_run_dir" value="${build_dir}/target" />
+	<!-- <property name="pack_for_run_dir" value="package" /> -->
+	<property name="compile_output_dir" value="${build_dir}/compile" />
+	<property name="runtest.library.rootpath" value="../..">
+	</property>
+
+	<echo>Package is generated to ${file_name}</echo>
+
+	<!-- Related Library and class file -->
+	<path id="cp">
+		<!-- <pathelement location="lib/extlib/*"/> <pathelement location="lib/*"/> 
+			<pathelement location="${collab_lib.package_dir}/${collab_lib.package_name_prefix}-${collab_lib.version.num}.jar"/> -->
+<!--		<pathelement location="${runtest.library.rootpath}/common-external/testng/testng-6.8-dist.jar" />-->
+		<pathelement location="${runtest.library.rootpath}/common-external/selenium/selenium-server-standalone-2.46.0.jar" />
+		<pathelement location="${runtest.library.rootpath}/common/Collab TestNG Framework/collab-testng-framework.jar" />
+		<pathelement location="${runtest.library.rootpath}/common/EikonMessengerWebDriver2016q1/EikonMessengerWebDriver2016q1.jar" />
+		<pathelement location="${runtest.library.rootpath}/common/TestNitroUtil/TestNitroUtil-0.1.0-SNAPSHOT.jar"/>
+		<pathelement location="${runtest.library.rootpath}/common-external/ant/ant.jar" />
+		<pathelement location="${runtest.library.rootpath}/common-external/ant/antcontrib.jar" />
+		<pathelement location="${runtest.library.rootpath}/common-external/reportNG/asm-tree-3.0.jar" />
+		<pathelement location="${runtest.library.rootpath}/common-external/reportNG/cobertura.jar" />
+		<pathelement location="${runtest.library.rootpath}/common-external/reportNG/commons-io-1.4.jar" />
+		<pathelement location="${runtest.library.rootpath}/common-external/reportNG/guice-3.0.jar" />
+		<pathelement location="${runtest.library.rootpath}/common-external/reportNG/jakarta-oro-2.0.8.jar" />
+		<pathelement location="${runtest.library.rootpath}/common-external/reportNG/velocity-dep-1.4.jar" />
+		<pathelement location="lib/*" />
+		<pathelement location="${runtest.library.rootpath}/common-external/commons/ftp4j-1.7.jar"/>
+		<pathelement location="${runtest.library.rootpath}/common-external/sshj/sshj-0.7.0.jar"/>
+		<pathelement location="${runtest.library.rootpath}/common-external/log4j/log4j-1.2.16.jar" />
+		<pathelement location="${runtest.library.rootpath}/common-external/ant/ant-jsch.jar"/>
+		<pathelement location="${runtest.library.rootpath}/common-external/jdbc/jtds-1.2.5.jar"/>
+		<pathelement location="${runtest.library.rootpath}/common-external/commons/commons-net-3.0.1.jar"/>
+		<pathelement location="${runtest.library.rootpath}/common-external/apache/apache-xmlrpc-3.1.3/xmlrpc-client-3.1.3.jar"/>
+		<pathelement location="${runtest.library.rootpath}/common-external/apache/apache-xmlrpc-3.1.3/xmlrpc-common-3.1.3.jar"/>
+		<pathelement location="${runtest.library.rootpath}/common-external/apache/httpclient-4.1.2.jar"/>
+		<pathelement location="${runtest.library.rootpath}/common-external/apache/httpcore-4.1.2.jar"/>
+		<pathelement location="${runtest.library.rootpath}/common-external/apache/apache-xmlrpc-3.1.3/ws-commons-util-1.0.2.jar"/>
+		<pathelement location="${runtest.library.rootpath}/common-external/commons/commons-logging-1.1.1.jar"/>
+		<pathelement location="${runtest.library.rootpath}/common-external/commons/commons-httpclient-3.1_1.jar"/>
+		<pathelement location="${runtest.library.rootpath}/common-external/apache/httpmime-4.1.2.jar"/>
+		<pathelement location="${runtest.library.rootpath}/common-external/commons/commons-lang-2.6.jar"/>
+		<!--pathelement location="${runtest.library.rootpath}/common-external/commons/commons-codec-1.4.jar"/-->
+		<pathelement location="${runtest.library.rootpath}/common-external/apache/common-codec-1.6/commons-codec-1.6.jar"/>
+		<pathelement location="${runtest.library.rootpath}/common-external/apache/commons-lang3-3.1/commons-lang3-3.1.jar"/>
+		<pathelement location="${runtest.library.rootpath}/common-external/apache/commons-io-2.4/commons-io-2.4.jar"/>
+		<pathelement location="${runtest.library.rootpath}/common-external/jsch/jsch-0.1.48.jar"/>
+		<pathelement location="${runtest.library.rootpath}/common/collab-log/collab-log-1.0.3.jar"/>
+		<pathelement location="${runtest.library.rootpath}/common-external/commons/commons-collections-3.2.1.jar"/>
+		<pathelement location="${runtest.library.rootpath}/common-external/commons/commons-configuration-1.6.jar"/>
+		<pathelement location="${runtest.library.rootpath}/common-external/coherence/coherence.jar"/>
+		<pathelement location="${runtest.library.rootpath}/common/domainModel/domainModel-0.0.428.jar"/>
+		<pathelement location="${runtest.library.rootpath}/common-external/coherence-tools/coherence-tools-1.0.jar"/>
+		<pathelement location="${runtest.library.rootpath}/common/EmailWebDriver/EmailWebDriver.jar"/>
+		<pathelement location="${runtest.library.rootpath}/common/CommonFunctionalTest/CommonFunctionalTest-dep.jar"/>
+		<pathelement location="${runtest.library.rootpath}/common-external/reportNG/guice-3.0.jar"/>
+		<pathelement location="${runtest.library.rootpath}/common-external/test/catch-exception-1.0.4.jar"/>
+		<pathelement location="${runtest.library.rootpath}/common-external/mockito/mockito-all-1.9.0.jar"/>
+		<pathelement location="${runtest.library.rootpath}/common-external/mockito/mockito-core-1.9.0.jar"/>
+		<pathelement location="${runtest.library.rootpath}/common-external/mockito/objenesis-1.2.jar"/>
+		<pathelement location="${runtest.library.rootpath}/common/adminwsclient/adminwsclient.jar"/>	
+		<pathelement location="${runtest.library.rootpath}/common-external/testWebService/axis.jar"/>		
+		<pathelement location="${runtest.library.rootpath}/common-external/testWebService/jaxrpc.jar"/>
+		<pathelement location="${runtest.library.rootpath}/common-external/testWebService/axis-ant.jar"/>	
+		<pathelement location="${runtest.library.rootpath}/common-external/testWebService/jaxrpc.jar"/>
+		<pathelement location="${runtest.library.rootpath}/common-external/testWebService/javax-wsdl.jar"/>
+		<pathelement location="${runtest.library.rootpath}/common-external/testWebService/commons-discovery-0.2.jar"/>		
+		<pathelement location="${runtest.library.rootpath}/common-external/testWebService/activation.jar"/>
+		<pathelement location="${runtest.library.rootpath}/common-external/testWebService/saaj.jar"/>
+		<pathelement location="${runtest.library.rootpath}/common-external/testWebService/mailapi.jar"/>
+		<pathelement location="${runtest.library.rootpath}/common-external/jackson/jackson-annotations-2.2.0.jar"/>
+		<pathelement location="${runtest.library.rootpath}/common-external/jackson/jackson-core-2.2.0.jar"/>
+		<pathelement location="${runtest.library.rootpath}/common-external/jackson/jackson-databind-2.2.0.jar"/>
+		<pathelement location="${runtest.library.rootpath}/common/LegacyServicesClient/LegacyServicesClient.jar"/>
+		<pathelement location="${runtest.library.rootpath}/common/IMOWebDriver/IMOWebDriver.jar"/>
+		<pathelement location="${runtest.library.rootpath}/common/PICWebDriver/PICWebDriver.jar"/>
+		<pathelement location="${runtest.library.rootpath}/common/smack-bosh/jbosh.jar"/>
+		<pathelement location="${runtest.library.rootpath}/common/smack-bosh/smack.jar"/>
+		<pathelement location="${runtest.library.rootpath}/common/smack-bosh/smackx.jar"/>
+		<pathelement location="${runtest.library.rootpath}/common/smack-bosh/xlightweb-2.13.2-jar-with-dependencies.jar"/>
+		<pathelement location="${runtest.library.rootpath}/common/smack-bosh/xpp3.jar"/>
+	 	<pathelement location="${runtest.library.rootpath}/common/autoitx/AutoItX4Java.jar"/>
+	 	<pathelement location="${runtest.library.rootpath}/common/autoitx/jacob.jar"/>
+		<pathelement location="${runtest.library.rootpath}/common-external/groovy/groovy-all-2.4.6-indy.jar" />
+		<!-- allure libs -->
+		<pathelement location="${runtest.library.rootpath}/common-external/allure/allure-model-1.5.0-RC1.jar"/>
+		<pathelement location="${runtest.library.rootpath}/common-external/allure/allure-java-aspects-1.5.0-RC1.jar"/>
+		<pathelement location="${runtest.library.rootpath}/common-external/allure/allure-java-annotations-1.5.0-RC1.jar"/>
+		<pathelement location="${runtest.library.rootpath}/common-external/allure/allure-java-adaptor-api-1.5.0-RC1.jar"/>
+
+		<pathelement location="${runtest.library.rootpath}/common-external/aspectj/*" />
+		<pathelement location="${runtest.library.rootpath}/common-external/bsh/bsh-2.0b4.jar" />
+		<pathelement location="${runtest.library.rootpath}/common-external/hamcrest/hamcrest-core-1.3.jar" />
+		<pathelement location="${runtest.library.rootpath}/common-external/jaxb2-basics-runtime/jaxb2-basics-runtime-0.9.3.jar" />
+		<pathelement location="${runtest.library.rootpath}/common-external/jcommander/jcommander-1.27.jar" />
+		<pathelement location="${runtest.library.rootpath}/common-external/junit/junit-4.12.jar" />
+		<pathelement location="${runtest.library.rootpath}/common-external/properties/properties-2.0.RC3.jar" />
+		<pathelement location="${runtest.library.rootpath}/common-external/slf4j/slf4j-api-1.7.12.jar" />
+		<pathelement location="${runtest.library.rootpath}/common-external/snakeyaml/snakeyaml-1.6.jar" />
+		<pathelement location="${runtest.library.rootpath}/common-external/testng/testng-6.8.5.jar"/>
+		<pathelement location="${runtest.library.rootpath}/common-external/tika-core/tika-core-1.7.jar"/>
+	</path>
+
+	<target name="compile" depends="prepare">
+		<javac debug="on" fork="true" source="1.8" target="1.8" destdir="${compile_output_dir}" encoding="UTF-8" classpathref="cp">
+			<exclude name="**/nonfn/**" />
+			
+			<src path="./src" />
+			<src path="./TRMCSystemTests-NG" />
+			<src path="./TestDirectoryWS" />
+			<src path="./UAPWSProxy" />
+		</javac>
+
+		<echo>compile source code completed at ${compile_output_dir} ...</echo>
+		
+		<copy todir="bin" overwrite="true">
+			<fileset dir="${compile_output_dir}">
+				<include name="**" />
+			</fileset>
+		</copy>
+	</target>
+
+	<target name="jar">
+		<delete dir="${pack_for_run_dir}" />
+		<mkdir dir="${pack_for_run_dir}" />
+		<!--delete file="${inttest.package_dir}\${file_name}"/-->
+		<delete file="MANIFEST.MF" />
+
+		<manifest file="MANIFEST.MF">
+			<attribute name="Built-By" value="${user.name}" />
+			<attribute name="Implementation-Version" value="${build.release}.${build.no}.${revision}" />
+			<attribute name="Built-Date" value="${TODAY}" />
+		</manifest>
+
+		<jar destfile="${pack_for_run_dir}\${file_name}" basedir="${compile_output_dir}" includes="**/*.class" manifest="MANIFEST.MF">
+			<fileset dir="src" includes="META-INF/*.xml" />
+		</jar>
+
+		<delete file="MANIFEST.MF" />
+	</target>
+
+	<target name="prepare">
+		<mkdir dir="${compile_output_dir}" />
+		<mkdir dir="bin" />
+	</target>
+
+	<target name="remove_class">
+		<delete dir="${compile_output_dir}">
+		</delete>
+	</target>
+
+	<target name="copy_file_to_folder">
+		<!--<delete dir="${pack_for_run_dir}" />
+		<mkdir dir="${pack_for_run_dir}"/>-->
+		<copy todir="${pack_for_run_dir}" overwrite="true">
+			<fileset dir=".">
+				<include name="runTest*.xml" />
+				<include name="group_definition_star.csv" />
+				<include name="group_definition_2016q1.csv" />
+				<include name="group_definition.csv" />
+				<include name="resources/**" />
+				<include name="project_config.ini" />
+				<include name="Script/**" />
+				<include name="TestSuite**" />
+				<include name="log4j.xml" />
+				<include name="StartStopService.xml" />
+			</fileset>
+		</copy>
+		<!--copy file="${pack_for_run_dir}/script/alpha_runtest.cmd" todir="${pack_for_run_dir}" />
+		<copy file="${pack_for_run_dir}/script/ci_runtest.cmd" todir="${pack_for_run_dir}" /-->
+		<copy file="../../common/Collab TestNG Framework/collab-testng-framework.jar" todir="${pack_for_run_dir}/lib/common/Collab TestNG Framework" />
+	
+		<copy todir="${pack_for_run_dir}/lib" overwrite="true">
+			<fileset dir="../.." includes="common/RMAPService/**" />
+			<fileset dir="../.." includes="common/SmackRobot/**" />
+		<!--	<fileset dir="../.." includes="common-external/testng/testng-6.8-dist.jar" />-->
+			<fileset dir="../.." includes="common-external/selenium/selenium-server-standalone-2.46.0.jar" />
+			<fileset dir="../.." includes="common-external/selenium/chromedriver.exe" />
+			<fileset dir="../.." includes="common/Collab TestNG Framework/collab-testng-framework.jar" />
+			<fileset dir="../.." includes="common/EikonMessengerWebDriver2016q1/EikonMessengerWebDriver2016q1.jar" />
+			<fileset dir="../.." includes="common/TestNitroUtil/TestNitroUtil-0.1.0-SNAPSHOT.jar" />
+			<fileset dir="../.." includes="common-external/ant/ant.jar" />
+			<fileset dir="../.." includes="common-external/ant/antcontrib.jar" />
+			<fileset dir="../.." includes="common-external/reportNG/asm-tree-3.0.jar" />
+			<fileset dir="../.." includes="common-external/reportNG/cobertura.jar" />
+			<fileset dir="../.." includes="common-external/reportNG/commons-io-1.4.jar" />
+			<fileset dir="../.." includes="common-external/reportNG/guice-3.0.jar" />
+			<fileset dir="../.." includes="common-external/reportNG/jakarta-oro-2.0.8.jar" />
+			<fileset dir="../.." includes="common-external/reportNG/velocity-dep-1.4.jar" />
+			<fileset dir="../.." includes="common-external/slf4j/slf4j-api-1.6.4.jar" />
+			<fileset dir="lib" includes="*" />
+			<fileset dir="../.." includes="common-external/commons/commons-beanutils-1.8.0.jar" />
+			<fileset dir="../.." includes="common-external/ezmorph/ezmorph-1.0.6.jar" />
+			<fileset dir="../.." includes="common-external/commons/commons-math3-3.0.jar" />
+			<fileset dir="../.." includes="common-external/log4j/log4j-1.2.16.jar" />
+			<fileset dir="../.." includes="common-external/ant/ant-jsch.jar"/>
+			<fileset dir="../.." includes="common-external/commons/ftp4j-1.7.jar"/>
+			<fileset dir="../.." includes="common-external/sshj/sshj-0.7.0.jar"/>
+			<fileset dir="../.." includes="common-external/log4j/log4j-1.2.16.jar" />
+			<fileset dir="../.." includes="common-external/ant/ant-jsch.jar"/>
+			<fileset dir="../.." includes="common-external/jdbc/jtds-1.2.5.jar"/>
+			<fileset dir="../.." includes="common-external/commons/commons-net-3.0.1.jar"/>
+			<fileset dir="../.." includes="common-external/apache/apache-xmlrpc-3.1.3/xmlrpc-client-3.1.3.jar"/>
+			<fileset dir="../.." includes="common-external/apache/apache-xmlrpc-3.1.3/xmlrpc-common-3.1.3.jar"/>
+			<fileset dir="../.." includes="common-external/apache/httpclient-4.1.2.jar"/>
+			<fileset dir="../.." includes="common-external/apache/httpcore-4.1.2.jar"/>
+			<fileset dir="../.." includes="common-external/apache/apache-xmlrpc-3.1.3/ws-commons-util-1.0.2.jar"/>
+			<fileset dir="../.." includes="common-external/commons/commons-logging-1.1.1.jar"/>
+			<fileset dir="../.." includes="common-external/commons/commons-httpclient-3.1_1.jar"/>
+			<fileset dir="../.." includes="common-external/apache/httpmime-4.1.2.jar"/>
+			<fileset dir="../.." includes="common-external/commons/commons-lang-2.6.jar"/>
+			<!--fileset dir="../.." includes="common-external/commons/commons-codec-1.4.jar"/-->
+			<fileset dir="../.." includes="common-external/apache/common-codec-1.6/commons-codec-1.6.jar"/>
+			<fileset dir="../.." includes="common-external/apache/commons-lang3-3.1/commons-lang3-3.1.jar"/>
+			<fileset dir="../.." includes="common-external/apache/commons-io-2.4/commons-io-2.4.jar"/>
+			<fileset dir="../.." includes="common-external/jsch/jsch-0.1.48.jar"/>
+			<fileset dir="../.." includes="common/collab-log/collab-log-1.0.3.jar"/>
+			<fileset dir="../.." includes="common-external/commons/commons-collections-3.2.1.jar"/>
+			<fileset dir="../.." includes="common-external/commons/commons-configuration-1.6.jar"/>
+			<fileset dir="../.." includes="common-external/coherence/coherence.jar"/>
+			<fileset dir="../.." includes="common/domainModel/domainModel-0.0.428.jar"/>
+			<fileset dir="../.." includes="common-external/coherence-tools/coherence-tools-1.0.jar"/>
+			<fileset dir="../.." includes="common/EmailWebDriver/EmailWebDriver.jar"/>
+			<fileset dir="../.." includes="common/CommonFunctionalTest/CommonFunctionalTest-dep.jar"/>
+			<fileset dir="../.." includes="common-external/reportNG/guice-3.0.jar"/>
+			<fileset dir="../.." includes="common-external/test/catch-exception-1.0.4.jar"/>
+			<fileset dir="../.." includes="common-external/mockito/mockito-all-1.9.0.jar"/>
+			<fileset dir="../.." includes="common-external/mockito/mockito-core-1.9.0.jar"/>
+			<fileset dir="../.." includes="common-external/mockito/objenesis-1.2.jar"/>
+			<fileset dir="../.." includes="common/adminwsclient/adminwsclient.jar"/>			
+			<fileset dir="../.." includes="common-external/testWebService/axis.jar"/>		
+			<fileset dir="../.." includes="common-external/testWebService/jaxrpc.jar"/>
+			<fileset dir="../.." includes="common-external/testWebService/axis-ant.jar"/>	
+			<fileset dir="../.." includes="common-external/testWebService/jaxrpc.jar"/>
+			<fileset dir="../.." includes="common-external/testWebService/javax-wsdl.jar"/>
+			<fileset dir="../.." includes="common-external/testWebService/commons-discovery-0.2.jar"/>		
+			<fileset dir="../.." includes="common-external/testWebService/activation.jar"/>
+			<fileset dir="../.." includes="common-external/testWebService/saaj.jar"/>
+			<fileset dir="../.." includes="common-external/testWebService/mailapi.jar"/>			
+			<fileset dir="../.." includes="common-external/jackson/jackson-annotations-2.2.0.jar"/>
+			<fileset dir="../.." includes="common-external/jackson/jackson-core-2.2.0.jar"/>
+			<fileset dir="../.." includes="common-external/jackson/jackson-databind-2.2.0.jar"/>
+			<fileset dir="../.." includes="common/LegacyServicesClient/LegacyServicesClient.jar"/>
+			<fileset dir="../.." includes="common/IMOWebDriver/IMOWebDriver.jar"/>
+			<fileset dir="../.." includes="common/PICWebDriver/PICWebDriver.jar"/>
+			<fileset dir="../.." includes="common/smack-bosh/jbosh.jar"/>
+			<fileset dir="../.." includes="common/smack-bosh/smack.jar"/>
+			<fileset dir="../.." includes="common/smack-bosh/smackx.jar"/>
+			<fileset dir="../.." includes="common/smack-bosh/xlightweb-2.13.2-jar-with-dependencies.jar"/>
+			<fileset dir="../.." includes="common/smack-bosh/xpp3.jar"/>
+			<fileset dir="../.." includes="common-external/groovy/groovy-all-2.4.6-indy.jar"/>
+			<!-- allure libs -->
+			<fileset dir="../.." includes="/common-external/allure/allure-model-1.5.0-RC1.jar"/>
+			<fileset dir="../.." includes="/common-external/allure/allure-java-aspects-1.5.0-RC1.jar"/>
+			<fileset dir="../.." includes="/common-external/allure/allure-java-annotations-1.5.0-RC1.jar"/>
+			<fileset dir="../.." includes="/common-external/allure/allure-java-adaptor-api-1.5.0-RC1.jar"/>
+
+			<fileset dir="../.." includes="common-external/aspectj/*" />
+			<fileset dir="../.." includes="common-external/bsh/bsh-2.0b4.jar" />
+			<fileset dir="../.." includes="common-external/hamcrest/hamcrest-core-1.3.jar" />
+			<fileset dir="../.." includes="common-external/jaxb2-basics-runtime/jaxb2-basics-runtime-0.9.3.jar" />
+			<fileset dir="../.." includes="common-external/jcommander/jcommander-1.27.jar" />
+			<fileset dir="../.." includes="common-external/junit/junit-4.12.jar" />
+			<fileset dir="../.." includes="common-external/properties/properties-2.0.RC3.jar" />
+			<fileset dir="../.." includes="common-external/slf4j/slf4j-api-1.7.12.jar" />
+			<fileset dir="../.." includes="common-external/snakeyaml/snakeyaml-1.6.jar" />
+			<fileset dir="../.." includes="common-external/testng/testng-6.8.5.jar"/>
+			<fileset dir="../.." includes="common-external/tika-core/tika-core-1.7.jar"/>
+		</copy>
+		<!--<copy overwrite="true" tofile="${pack_for_run_dir}/${file_name}" file="${pack_for_run_dir}\${file_name}"/>-->
+	</target>
+
+	<target name="zip">
+		<zip destfile="${build_dir}/testpackage.zip" basedir="${pack_for_run_dir}">
+		</zip>
+	</target>
+
+	<target name="buildOFPackage" depends="prepare,compile,jar,remove_class" />
+	<target name="pack_ready_to_run" depends="buildOFPackage,copy_file_to_folder,zip" />
+
+
+</project>
